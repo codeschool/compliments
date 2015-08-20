@@ -1,9 +1,9 @@
 .row
   .col-sm-6
     %ul.nav.nav-pills
-      = link_to "All", compliments_path, class: "btn btn-primary"
-      = link_to "Given", "#", class: "btn"
-      = link_to "Recieved", "#", class: "btn"
+      = link_to "All", compliments_path, class: "btn #{activek_button_class(compliments_path)}"
+      = link_to "Given", given_compliments_path, class: "btn #{activek_button_class(given_compliments_path)}"
+      = link_to "Recieved", received_compliments_path, class: "btn #{activek_button_class(received_compliments_path)}"
   .col-sm-6
     .text-right= link_to "New Compliment", new_compliment_path, class: "btn btn-primary"
 

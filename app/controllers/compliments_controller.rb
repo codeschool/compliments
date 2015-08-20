@@ -3,6 +3,16 @@ class ComplimentsController < ApplicationController
     @compliments = Compliment.public
   end
 
+  def given
+    @compliments = current_user.compliments_given
+    render :index
+  end
+
+  def received
+    @compliments = current_user.compliments_received
+    render :index
+  end
+
   def new
     @compliment = current_user.compliments_given.new
   end

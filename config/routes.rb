@@ -10,8 +10,11 @@ Rails.application.routes.draw do
   get 'auth/failure', to: redirect('/')
   get 'login', to: 'sessions#new', as: :login
   get 'logout', to: 'sessions#destroy', as: :logout
-  
-  resources :compliments
+
+  resources :compliments do
+    get :received, on: :collection
+    get :given, on: :collection
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
