@@ -1,5 +1,7 @@
-= simple_form_for @compliment do |f|
+= simple_form_for @compliment, html: { class: 'form-horizontal' } do |f|
   = f.association :complimentee
   = f.input :text, as: :text
   = f.input :private, as: :radio_buttons, label: "Keep compliment private?"
-  = f.submit
+
+  .form-group
+    = f.submit class: "btn btn-primary"

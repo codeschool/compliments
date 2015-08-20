@@ -7,4 +7,15 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    = yield
+    %nav.navbar.navbar-default
+      .container
+        .navbar-header
+          = link_to "Compliments", root_path, class: "navbar-brand"
+        .nav.navbar-nav.navbar-right
+          .navbar-brand
+            = image_tag current_user.image, height: 40, width: 40
+
+    .container
+      .row
+        .col-sm-12
+          = yield

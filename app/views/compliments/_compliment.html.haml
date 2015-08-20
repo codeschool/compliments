@@ -1,9 +1,14 @@
-%p
-  From: #{compliment.complimenter}
-%p
-  To: #{compliment.complimentee}
-%p= compliment.text
-
-- if compliment.from?(current_user)
-  = link_to "Edit", edit_compliment_path(compliment)
-  = link_to "Delete", compliment_path(compliment), method: :delete
+.panel.panel-default
+  .panel-heading
+    #{compliment.complimenter.to_s.upcase}
+  .panel-body
+    .media
+      .media-left
+        = image_tag compliment.complimentee.image, class: "img-avatar"
+      .media-body
+        %p= compliment.text
+  - if compliment.from?(current_user)
+    .panel-footer
+      %p.text-right
+        = link_to "Edit", edit_compliment_path(compliment), class: "btn btn-primary"
+        = link_to "Delete", compliment_path(compliment), method: :delete, class: "btn btn-danger"
