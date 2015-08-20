@@ -31,6 +31,12 @@ class ComplimentsController < ApplicationController
     @compliment = Compliment.find(params[:id])
   end
 
+  def random
+    @compliment = Compliment.public.random
+
+    render :show
+  end
+
   def edit
     @compliment = find_compliment
   end

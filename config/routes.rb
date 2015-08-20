@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :compliments do
     get :received, on: :collection
     get :given, on: :collection
+    get :random, on: :collection
   end
 
   # Example of regular route:

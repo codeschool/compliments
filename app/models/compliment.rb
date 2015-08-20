@@ -6,6 +6,10 @@ class Compliment < ActiveRecord::Base
     where(private: false)
   end
 
+  def self.random
+    order("RANDOM()").first
+  end
+
   def from?(user)
     user == complimenter
   end
