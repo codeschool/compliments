@@ -1,0 +1,5 @@
+= simple_form_for @compliment do |f|
+  = f.association :complimentee
+  = f.input :text, as: :text
+  = f.input :private, as: :radio_buttons, label: "Keep compliment private?"
+  = f.submit
