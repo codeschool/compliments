@@ -11,7 +11,7 @@ class Compliment < ActiveRecord::Base
   end
 
   def self.random
-    order("RANDOM()").first
+    unscoped.order("RANDOM()").first
   end
 
   def from?(user)
