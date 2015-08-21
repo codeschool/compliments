@@ -26,6 +26,33 @@
     border-radius: 0 20px 20px;
     min-height: 50px;
 
+    &:before {
+      position: absolute;
+      content: " ";
+      left: -10px;
+      width: 10px;
+      height: 10px;
+      /* border-top: 10px solid #5094ce; */
+      /* border-left: 10px solid transparent; */
+      /* border-right: 10px solid #5094ce; */
+      top: 0;
+      /* border-radius: 50%; */
+      border-top-left-radius: 10px 5px;
+      background-color: #5094ce;
+    }
+
+    &:after {
+      content: " ";
+      position: absolute;
+      background-color: white;
+      left: -20px;
+      top: 0;
+      height: 20px;
+      width: 20px;
+      border-radius: 5px;
+      top: 5px;
+    }
+
     .compliment-date {
       position: absolute;
       top: -1.5em;
@@ -35,6 +62,7 @@
       position: absolute;
       top: 0;
       left: -60px;
+      z-index: 2;
     }
 
     .complimentee-image {
