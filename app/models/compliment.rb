@@ -4,6 +4,8 @@ class Compliment < ActiveRecord::Base
 
   after_create :notify
 
+  default_scope { order("created_at DESC") }
+
   def self.public
     where(private: false)
   end
