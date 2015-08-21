@@ -1,14 +1,13 @@
-.panel.panel-default
-  .panel-heading
-    #{compliment.complimenter.to_s.upcase}
-  .panel-body
-    .media
-      .media-left
-        = image_tag compliment.complimentee.image, class: "img-avatar"
-      .media-body
-        %p= compliment.text
-  - if compliment.from?(current_user)
-    .panel-footer
-      %p.text-right
-        = link_to "Edit", edit_compliment_path(compliment), class: "btn btn-primary"
-        = link_to "Delete", compliment_path(compliment), method: :delete, class: "btn btn-danger"
+.compliment.compliment-small
+  .compliment-text
+    .compliment-date
+      %small
+        %em.text-muted= compliment.created_at.strftime("%B %d, %Y")
+    = image_tag compliment.complimenter.image, class: "img-avatar complimenter-image"
+    = image_tag compliment.complimentee.image, class: "img-avatar complimentee-image"
+    = compliment.text
+
+    - if compliment.from?(current_user)
+      .compliment-actions
+        = link_to "", edit_compliment_path(compliment), class: "btn glyphicon glyphicon-pencil text-muted btn-xs"
+        = link_to "", compliment_path(compliment), method: :delete, class: "btn glyphicon glyphicon-trash text-muted btn-xs"

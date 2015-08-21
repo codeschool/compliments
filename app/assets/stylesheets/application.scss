@@ -14,3 +14,39 @@
 .img-avatar {
   border-radius: 50%;
 }
+.compliment {
+  padding: 20px;
+
+  .compliment-text {
+    position: relative;
+    color: white;
+    background-color: lighten($brand-primary, 10%);
+    padding: 20px;
+    margin: 20px 0 20px 60px;
+    border-radius: 0 20px 20px;
+    min-height: 50px;
+
+    .compliment-date {
+      position: absolute;
+      top: -1.5em;
+      left: 0;
+    }
+    .complimenter-image {
+      position: absolute;
+      top: 0;
+      left: -60px;
+    }
+
+    .complimentee-image {
+      position: absolute;
+      bottom: -25px;
+      right: 0;
+    }
+
+    .compliment-actions {
+      position: absolute;
+      bottom: -1.5em;
+      left: 0;
+    }
+  }
+}

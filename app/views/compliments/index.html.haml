@@ -9,4 +9,6 @@
 
 %br
 
-= render @compliments
+- @compliments.each do |compliment|
+  .col-sm-6
+    = render compliment
