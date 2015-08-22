@@ -11,9 +11,9 @@
     = link_to "New Compliment", new_compliment_path, class: "btn"
 
 - unless @compliments.empty?
-  .g
+  .g.collection.collection--1of2
     - @compliments.each do |compliment|
-      .g-b.g-b--1of2
+      .g-b.g-b--1of2.collection-item
         = render compliment
 - else
   %p.pal.tac.tcs.tsi There are no compliments currently. We need to be nicer.
