@@ -1,1 +1,12 @@
+.split.mbl
+  .split-cell
+  .split-cell
+    = link_to "New Quote", new_quote_path, class: "btn"
 
+- unless @quotes.empty?
+  .g.collection.collection--1of2
+    - @quotes.each do |quote|
+      .g-b.g-b--1of2.collection-item
+        = render quote
+- else
+  %p.pal.tac.tcs.tsi There are no quotes currently. Listen carefully :)

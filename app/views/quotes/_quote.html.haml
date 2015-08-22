@@ -1,0 +1,20 @@
+.message
+
+  %p.message-date
+    %em= quote.created_at.strftime("%B %d, %Y")
+
+  = image_tag quote.user.image, class: "thumb message-avatar"
+
+  .card.message-content
+    = quote.text
+
+  .message-meta.group
+
+    - if quote.from?(current_user)
+      %ul.list.list--inline.message-controls
+        %li.list-item= link_to "Edit", edit_quote_path(quote)
+        %li.list-item= link_to "Delete", quote_path(quote), method: :delete
+
+    %p.fr
+      %span.tcs by
+      = quote.user.name

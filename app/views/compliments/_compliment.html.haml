@@ -12,7 +12,7 @@
   .message-meta.group
 
     - if compliment.from?(current_user)
-      %ul.list.list--inline.message-controls.has-btn
+      %ul.list.list--inline.message-controls
         %li.list-item= link_to "Edit", edit_compliment_path(compliment)
         %li.list-item= link_to "Delete", compliment_path(compliment), method: :delete
 

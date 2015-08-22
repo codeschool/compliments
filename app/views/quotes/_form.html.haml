@@ -1,0 +1,8 @@
+= simple_form_for @quote, html: { class: 'form' } do |f|
+
+  %fieldset.form-field
+    = f.association :user, input_html: { class: 'form-select' }, label_html: { class: 'form-label' }
+  %fieldset.form-field
+    = f.input :text, as: :text, input_html: { class: 'form-input', rows: '5' }, label_html: { class: 'form-label' }
+
+  = f.submit class: "btn"
