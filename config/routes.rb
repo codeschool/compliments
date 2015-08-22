@@ -17,6 +17,8 @@ Rails.application.routes.draw do
     get :random, on: :collection
   end
 
+  resources :quotes
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 
