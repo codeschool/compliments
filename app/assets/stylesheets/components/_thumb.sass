@@ -1,39 +1,36 @@
 // *************************************
 //
-//   Structure
-//   -> This is an example structure
+//   Thumb
+//   -> Media element
+//      CodePen: http://codepen.io/drewbarontini/pen/acGmE
 //
 // -------------------------------------
 //   Template (Haml)
 // -------------------------------------
 //
-// .structure[.structure--modifier](.is-state)(.has-context)
-//   .structure-scaffolding
+// %img.thumb[m]
 //
 // *************************************
 
-// .structure
+// -------------------------------------
+//   Variables
+// -------------------------------------
+
+// ----- Borders ----- //
+
+$thumb-borderRadius: 4px !default
+
+// -------------------------------------
+//   Base
+// -------------------------------------
+
+.thumb
+  border-radius: 50%
+  display: block
 
 // -------------------------------------
 //   Modifiers
 // -------------------------------------
 
-// .structure--modifier
-
-// -------------------------------------
-//   States
-// -------------------------------------
-
-// .structure.is-state
-
-// -------------------------------------
-//   Context
-// -------------------------------------
-
-// .has-structure
-
-// -------------------------------------
-//   Scaffolding
-// -------------------------------------
-
-// .structure-scaffolding
+.thumb--m
+  border-radius: $thumb-borderRadius

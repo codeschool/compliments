@@ -11,9 +11,10 @@
       .cell.well
         .g
           .g-b.g-b--1of2
-            = link_to "Compliments", root_path
+            = link_to root_path do
+              = image_tag 'logo-compliments.svg', alt: 'Alt Text', class: ''
           .g-b.g-b--1of2
-            = image_tag current_user.image, class: "fr", height: "40", width: "40"
+            = image_tag current_user.image, class: "thumb fr mts", height: "40", width: "40"
 
     %main.row.content
       .cell.well

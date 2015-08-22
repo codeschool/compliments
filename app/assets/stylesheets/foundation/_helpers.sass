@@ -25,6 +25,44 @@
 //   Mixins
 // -------------------------------------
 
+// ----- Caret ----- //
+// -> Creates a caret (arrow) icon
+//
+// $side - the side the caret is on
+// $size - the caret size
+// $color - the caret color
+
+// Requires this function (replaces Compass)
+
+@function opposite-position($side)
+  @if $side == 'top'
+    @return 'bottom'
+  @if $side == 'bottom'
+    @return 'top'
+  @if $side == 'left'
+    @return 'right'
+  @if $side == 'right'
+    @return 'left'
+
+=caret($side, $size, $color)
+  $opposite: opposite-position($side)
+  border: $size solid transparent
+  border-#{$opposite}: $size solid $color
+  border-#{$side}: 0
+  bottom: auto
+  content: ''
+  display: block
+  height: 0
+  left: 50%
+  margin: 0 0 0 (-$size)
+  margin-#{$side}: 0
+  position: absolute
+  right: auto
+  top: 0
+  width: 0
+  #{$side}: -$size
+  #{$opposite}: auto
+
 // ----- Font Face ----- //
 // -> https://github.com/thoughtbot/bourbon/edit/master/app/assets/stylesheets/css3/_font-face.scss#
 //
@@ -57,6 +95,19 @@
 =respond-to($val, $query: min-width, $media: screen)
   @media #{$media} and ($query: $val)
     @content
+
+// ----- State ----- //
+// -> Combines state-related pseudo-classes
+//
+// $class - an optional state class ('is-active')
+
+=state($class: false)
+  @if $class
+    &:active, &:focus, &:hover, &.#{$class}
+      @content
+  @else
+    &:active, &:focus, &:hover
+      @content
 
 // -------------------------------------
 //   Extends

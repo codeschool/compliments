@@ -1,0 +1,68 @@
+// *************************************
+//
+//   Message
+//   -> Chat message
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .message
+//
+// *************************************
+
+.message
+  position: relative
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Avatar ----- //
+
+.message-avatar
+  position: absolute
+
+// Modifiers: Complimentee
+
+.message-avatar--complimentee
+  bottom: -$b-space-xs
+  right: 0
+
+// Modifiers: Complimenter
+
+.message-avatar--complimenter
+  left: 0
+  top: $b-space-l
+
+// ----- Content ----- //
+
+.message-content
+  border-top-left-radius: 0
+  color: $c-background-invert
+  margin-bottom: $b-space-s
+  margin-left: $b-space-xl
+  position: relative
+
+  &::before
+    $size: 20px
+    border-color: transparent $c-primary transparent transparent
+    border-style: solid
+    border-width: 0px $size $size 0
+    content: ""
+    left: -$size
+    position: absolute
+    top: 0
+
+// ----- Controls ----- //
+
+.message-controls
+  margin-left: $b-space-xl
+
+// ----- To ----- //
+
+.message-to
+  bottom: -$b-space
+  margin-right: $b-space
+  position: absolute
+  right: $b-space-l
