@@ -21,19 +21,25 @@
 // ----- Avatar ----- //
 
 .message-avatar
-  position: absolute
-
-// Modifiers: Complimentee
-
-.message-avatar--complimentee
-  bottom: -$b-space-xs
-  right: 0
-
-// Modifiers: Complimenter
-
-.message-avatar--complimenter
   left: 0
+  position: absolute
   top: $b-space-l
+
+// ----- Complimentee ----- //
+
+.message-complimentee
+  float: right
+
+// Scaffolding: Avatar
+
+.message-complimentee-avatar
+  margin-top: -$b-space-l
+
+// Scaffolding: Name
+
+.message-complimentee-name
+  margin-bottom: -1em // FIXME: Magic number!
+  text-align: right
 
 // ----- Content ----- //
 
@@ -58,17 +64,15 @@
 
 .message-content-name
   color: rgba($c-text-invert, 0.75)
-  margin-bottom: $b-space-s
 
 // ----- Controls ----- //
 
 .message-controls
-  margin-left: $b-space-xl
+  float: left
 
-// ----- To ----- //
+// ----- Meta ----- //
 
-.message-to
-  bottom: -$b-space
-  margin-right: $b-space
+.message-meta
+  left: $b-space-xl
   position: absolute
-  right: $b-space-l
+  right: 0

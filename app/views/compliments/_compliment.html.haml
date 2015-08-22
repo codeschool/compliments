@@ -3,19 +3,23 @@
   %p.message-date.tss
     %em= compliment.created_at.strftime("%B %d, %Y")
 
-  = image_tag compliment.complimenter.image, class: "thumb message-avatar message-avatar--complimenter"
+  = image_tag compliment.complimenter.image, class: "thumb message-avatar"
 
   .card.message-content
     %p.message-content-name= compliment.complimenter.name
     = compliment.text
 
-  %p.message-to
-    %span.tcs to
-    = compliment.complimentee.name
+  .message-meta.group
 
-  = image_tag compliment.complimentee.image, class: "thumb message-avatar message-avatar--complimentee"
+    - if compliment.from?(current_user)
+      %ul.list.list--inline.message-controls.has-btn
+        %li.list-item= link_to "Edit", edit_compliment_path(compliment)
+        %li.list-item= link_to "Delete", compliment_path(compliment), method: :delete
 
-  - if compliment.from?(current_user)
-    %ul.list.list--inline.message-controls.has-btn
-      %li.list-item= link_to "Edit", edit_compliment_path(compliment)
-      %li.list-item= link_to "Delete", compliment_path(compliment), method: :delete
+    .bucket.bucket--flag.message-complimentee
+      .bucket-content.message-complimentee-name
+        %p
+          %span.tcs to
+          = compliment.complimentee.name
+      .bucket-media.message-complimentee-avatar
+        = image_tag compliment.complimentee.image, class: "thumb"
