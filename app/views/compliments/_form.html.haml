@@ -1,7 +1,11 @@
-= simple_form_for @compliment, html: { class: 'form-horizontal' } do |f|
-  = f.association :complimentee
-  = f.input :text, as: :text
-  = f.input :private, as: :radio_buttons, label: "Keep compliment private?"
+= simple_form_for @compliment, html: { class: 'form' } do |f|
+
+  %fieldset.form-field
+    = f.association :complimentee, input_html: { class: 'form-select' }, label_html: { class: 'form-label' }
+  %fieldset.form-field
+    = f.input :text, as: :text, input_html: { class: 'form-input', rows: '5' }, label_html: { class: 'form-label' }
+  %fieldset.form-field.form-field--radio
+    = f.input :private, as: :radio_buttons, label: "Keep compliment private?", input_html: { class: 'form-input' }, label_html: { class: 'form-label' }
 
   .form-group
-    = f.submit class: "btn btn-primary"
+    = f.submit class: "btn"
