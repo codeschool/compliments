@@ -6,6 +6,7 @@
   = image_tag compliment.complimenter.image, class: "thumb message-avatar message-avatar--complimenter"
 
   .card.message-content
+    %p.message-content-name= compliment.complimenter.name
     = compliment.text
 
   %p.message-to
