@@ -1,0 +1,127 @@
+// *************************************
+//
+//   Form
+//   -> User input environment
+//      CodePen: http://codepen.io/drewbarontini/pen/mbIwj
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// %form.form[s|l]
+//
+//   %fieldset.form-field[checkbox|inline|radio]
+//
+//     .form-field-item
+//
+//     %label.form-label
+//
+//     %input.form-input
+//
+//     %select.form-select
+//
+// *************************************
+
+.form
+  margin-bottom: $b-space
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Sizes ----- //
+
+// Small
+
+.form--s
+
+  .form-field
+    margin-bottom: $b-space-s
+
+// Large
+
+.form--l
+
+  .form-field
+    margin-bottom: $b-space-l
+
+// -------------------------------------
+//   Scaffolding
+// -------------------------------------
+
+// ----- Field ----- //
+
+.form-field
+  border: 0
+  margin: 0 0 $b-space
+  padding: 0
+
+// Checkbox & Radio
+
+.form-field--checkbox,
+.form-field--radio
+
+  .form-input
+    display: inline-block
+    margin-right: $b-space-xs
+    width: auto
+
+  .form-label
+    display: inline-block
+
+  // Rails!
+
+  .radio
+    margin-left: $b-space-s
+
+// Inline
+
+.form-field--inline
+
+  .form-btn
+    display: block
+    line-height: 2.9
+    min-width: 100%
+
+// Item
+
+.form-field-item
+  margin-bottom: $b-space-s
+
+  &:last-child
+    margin-bottom: 0
+
+// ----- Help ----- //
+
+.form-help
+  margin-bottom: 0
+
+// ----- Input ----- //
+
+.form-input
+  background: $form-input-background
+  border: $b-border
+  border-radius: $b-borderRadius
+  box-sizing: border-box
+  font-size: $b-fontSize
+  padding: $b-space-s
+  position: relative
+  transition: border-color 0.2s ease-in-out
+  width: 100%
+
+  &:focus
+    border-color: $form-input-focus-borderColor
+    outline: none
+
+// ----- Label ----- //
+
+.form-label
+  display: block
+  font-size: $b-fontSize-s
+  font-weight: bold
+  margin-bottom: $b-space-xs
+
+// ----- Select ----- //
+
+.form-select
+  min-width: 12.5em // ~200px

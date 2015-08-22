@@ -1,13 +1,21 @@
-.compliment.compliment-small
-  .compliment-text
-    .compliment-date
-      %small
-        %em.text-muted= compliment.created_at.strftime("%B %d, %Y")
-    = image_tag compliment.complimenter.image, class: "img-avatar complimenter-image"
-    = image_tag compliment.complimentee.image, class: "img-avatar complimentee-image"
+.message
+
+  %p.message-date.tss
+    %em= compliment.created_at.strftime("%B %d, %Y")
+
+  = image_tag compliment.complimenter.image, class: "thumb message-avatar message-avatar--complimenter"
+
+  .card.message-content
+    %p.message-content-name= compliment.complimenter.name
     = compliment.text
 
-    - if compliment.from?(current_user)
-      .compliment-actions
-        = link_to "", edit_compliment_path(compliment), class: "btn glyphicon glyphicon-pencil text-muted btn-xs"
-        = link_to "", compliment_path(compliment), method: :delete, class: "btn glyphicon glyphicon-trash text-muted btn-xs"
+  %p.message-to
+    %span.tcs to
+    = compliment.complimentee.name
+
+  = image_tag compliment.complimentee.image, class: "thumb message-avatar message-avatar--complimentee"
+
+  - if compliment.from?(current_user)
+    %ul.list.list--inline.message-controls.has-btn
+      %li.list-item= link_to "Edit", edit_compliment_path(compliment)
+      %li.list-item= link_to "Delete", compliment_path(compliment), method: :delete

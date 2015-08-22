@@ -7,15 +7,15 @@
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   %body
-    %nav.navbar.navbar-default
-      .container
-        .navbar-header
-          = link_to "Compliments", root_path, class: "navbar-brand"
-        .nav.navbar-nav.navbar-right
-          .navbar-brand
-            = image_tag current_user.image, height: 40, width: 40
+    %nav.row.row--a
+      .cell.well
+        .g
+          .g-b.g-b--1of2
+            = link_to root_path do
+              = image_tag 'logo-compliments.svg', alt: 'Alt Text', class: ''
+          .g-b.g-b--1of2
+            = image_tag current_user.image, class: "thumb fr mts", height: "40", width: "40"
 
-    .container
-      .row
-        .col-sm-12
-          = yield
+    %main.row.content
+      .cell.well
+        = yield

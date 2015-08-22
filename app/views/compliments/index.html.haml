@@ -1,14 +1,19 @@
-.row
-  .col-sm-6
-    %ul.nav.nav-pills
-      = link_to "All", compliments_path, class: "btn #{active_button_class(compliments_path)}"
-      = link_to "Given", given_compliments_path, class: "btn #{active_button_class(given_compliments_path)}"
-      = link_to "Recieved", received_compliments_path, class: "btn #{active_button_class(received_compliments_path)}"
-  .col-sm-6
-    .text-right= link_to "New Compliment", new_compliment_path, class: "btn btn-primary"
+.split.mbm
+  .split-cell
 
-%br
+    %ul.list.list--inline
+      .list-item= link_to "All", compliments_path, class: "list-item-link #{active_class(compliments_path)}"
+      .list-item= link_to "Given", given_compliments_path, class: "list-item-link #{active_class(given_compliments_path)}"
+      .list-item= link_to "Recieved", received_compliments_path, class: "list-item-link #{active_class(received_compliments_path)}"
 
-- @compliments.each do |compliment|
-  .col-sm-6
-    = render compliment
+  .split-cell
+
+    = link_to "New Compliment", new_compliment_path, class: "btn"
+
+- unless @compliments.empty?
+  .g.collection.collection--1of2
+    - @compliments.each do |compliment|
+      .g-b.g-b--1of2.collection-item
+        = render compliment
+- else
+  %p.pal.tac.tcs.tsi There are no compliments currently. We need to be nicer.

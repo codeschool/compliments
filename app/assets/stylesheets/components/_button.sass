@@ -1,0 +1,42 @@
+// *************************************
+//
+//   Button
+//   -> Clickable control
+//
+// -------------------------------------
+//   Template (Haml)
+// -------------------------------------
+//
+// .btn
+//
+// *************************************
+
+.btn
+  background: $c-primary
+  border-radius: $b-borderRadius
+  border: 1px solid transparent
+  color: $c-text-invert
+  cursor: pointer
+  display: inline-block
+  font-size: $b-fontSize
+  line-height: 2.5
+  padding: 0 $b-space
+  text-align: center
+  text-decoration: none
+  transition: $b-transition
+  white-space: nowrap
+
+  +state
+    background: $c-text
+    color: $c-text-invert
+
+// -------------------------------------
+//   Modifiers
+// -------------------------------------
+
+// ----- Small ----- //
+
+.btn--s
+  font-size: $b-fontSize-s
+  line-height: 2
+  padding: 0 $b-space-s
