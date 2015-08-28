@@ -15,6 +15,11 @@
       %ul.list.list--inline.message-controls.has-btn
         %li.list-item= link_to "Edit", edit_compliment_path(compliment)
         %li.list-item= link_to "Delete", compliment_path(compliment), method: :delete
+    - else
+      - unless current_user && current_user.uphearted?(compliment)
+        = link_to "&hearts; #{compliment.uphearts_count}".html_safe, compliment_upheart_path(compliment), method: :post, remote: true
+      - else
+        = link_to "&hearts; #{compliment.uphearts_count}".html_safe, compliment_upheart_path(compliment), method: :delete, remote: true
 
     .bucket.bucket--flag.message-complimentee
       .bucket-content.message-complimentee-name
