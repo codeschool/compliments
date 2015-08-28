@@ -1,7 +1,7 @@
 class ComplimentsController < ApplicationController
   skip_before_filter :authenticate_user!, only: :random
 
-  http_basic_authenticate_with name: "internals", password: "heavy-awesome-croissant", only: :random
+  http_basic_authenticate_with name: "internals", password: "heavy-awesome-chocolate-croissant-bagel", only: :random
 
   def index
     @compliments = Compliment.public
