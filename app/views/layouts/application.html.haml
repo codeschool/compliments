@@ -16,7 +16,8 @@
             = link_to root_path do
               = image_tag 'logo-compliments.svg', alt: 'Compliments'
           .g-b.g-b--1of2
-            = image_tag current_user.image, class: "thumb fr", height: "50", width: "50"
+            - if current_user
+              = image_tag current_user.image, class: "thumb fr", height: "50", width: "50"
 
     %main.row.content
       .cell.well
