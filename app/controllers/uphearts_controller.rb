@@ -3,19 +3,19 @@ class UpheartsController < ApplicationController
     @upheart = find_compliment.uphearts.new(upheart_params)
 
     if @upheart.save
-      render json: @upheart, status: 200
+      render json: { upheart_count: find_compliment.upheart_count }, status: 200
     else
-      render json: @upheart.errors, status: 500
+      render json: { errors: @upheart.errors.full_messages.to_sentence }, status: 500
     end
   end
 
   def destroy
     @upheart = find_upheart
 
-    if @upheart.destroy
-      render json: @upheart, status: 200
+    if @upheart && @upheart.destroy
+      render json: { upheart_count: find_compliment.upheart_count }, status: 200
     else
-      render json: @upheart.errors, status: 500
+      render json: { errors: "Unable to remove upheart. :(" }, status: 500
     end
   end
 

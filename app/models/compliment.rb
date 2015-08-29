@@ -23,7 +23,13 @@ class Compliment < ActiveRecord::Base
     ComplimentMailer.notify(self).deliver_later
   end
 
-  def uphearts_count
+  def uphearted_by?(user)
+    return false if user.nil?
+
+    uphearts.where(user_id: user.id).any?
+  end
+
+  def upheart_count
     uphearts.count
   end
 end

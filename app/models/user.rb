@@ -26,10 +26,6 @@ class User < ActiveRecord::Base
     end
   end
 
-  def uphearted?(compliment)
-    uphearts.where(compliment_id: compliment.id).any?
-  end
-
   def to_s
     self.name || self.email
   end
