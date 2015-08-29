@@ -1,6 +1,7 @@
 class Compliment < ActiveRecord::Base
   belongs_to :complimenter, class_name: "User"
   belongs_to :complimentee, class_name: "User"
+  has_many :uphearts, inverse_of: :compliment
 
   after_create :notify
 
@@ -20,5 +21,15 @@ class Compliment < ActiveRecord::Base
 
   def notify
     ComplimentMailer.notify(self).deliver_later
+  end
+
+  def uphearted_by?(user)
+    return false if user.nil?
+
+    uphearts.where(user_id: user.id).any?
+  end
+
+  def upheart_count
+    uphearts.count
   end
 end
