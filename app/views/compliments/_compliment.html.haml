@@ -10,15 +10,14 @@
     = compliment.text
 
   .message-meta.group
-
-    - if compliment.from?(current_user)
-      %ul.list.list--inline.message-controls.has-btn
+    %ul.list.list--inline.message-controls.has-btn
+      %li.list-item
+        = link_to "#", class: "js-upheart-toggle #{'is-uphearted' if compliment.uphearted_by?(current_user)}", data: { upheart_url: compliment_upheart_url(compliment) } do
+          ="&hearts;".html_safe
+          %span.js-upheart-count= compliment.upheart_count
+      - if compliment.from?(current_user)
         %li.list-item= link_to "Edit", edit_compliment_path(compliment)
         %li.list-item= link_to "Delete", compliment_path(compliment), method: :delete
-    - else
-      = link_to "#", class: "js-upheart-toggle #{'is-uphearted' if compliment.uphearted_by?(current_user)}", data: { upheart_url: compliment_upheart_url(compliment) } do
-        ="&hearts;".html_safe
-        %span.js-upheart-count= compliment.upheart_count
 
     .bucket.bucket--flag.message-complimentee
       .bucket-content.message-complimentee-name
