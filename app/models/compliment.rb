@@ -4,6 +4,7 @@ class Compliment < ActiveRecord::Base
   has_many :uphearts, inverse_of: :compliment
 
   after_create :notify
+  after_create :create_complimenter_upheart
 
   default_scope { order("created_at DESC") }
 
@@ -31,5 +32,11 @@ class Compliment < ActiveRecord::Base
 
   def upheart_count
     uphearts.count
+  end
+
+  private
+
+  def create_complimenter_upheart
+    self.uphearts.create(user_id: complimenter.id)
   end
 end
