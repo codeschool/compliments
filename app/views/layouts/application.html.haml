@@ -5,7 +5,6 @@
     %title Compliments
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag('https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700')
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = favicon_link_tag 'favicon.ico'
     = csrf_meta_tags
   %body{ class: yield(:body_class) }
@@ -22,3 +21,5 @@
     %main.row.content
       .cell.well
         = yield
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
