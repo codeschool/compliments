@@ -3,7 +3,7 @@
   %p.message-date
     %em= compliment.created_at.strftime("%B %d, %Y")
 
-  = image_tag compliment.complimenter.image, class: "thumb message-avatar"
+  = image_tag compliment.complimenter.image, class: "thumb message-avatar", size: "50"
 
   .card.message-content
     %p.message-content-name= compliment.complimenter.name
@@ -25,4 +25,4 @@
           %span.tcs to
           = compliment.complimentee.name
       .bucket-media.message-complimentee-avatar
-        = image_tag compliment.complimentee.image, class: "thumb"
+        = image_tag compliment.complimentee.image, class: "thumb", size: "50"
