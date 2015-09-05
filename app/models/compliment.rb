@@ -1,7 +1,8 @@
 class Compliment < ActiveRecord::Base
+  include Reactionable
+
   belongs_to :complimenter, class_name: "User"
   belongs_to :complimentee, class_name: "User"
-  has_many :emoji_reactions, as: :reactionable
   has_many :uphearts, inverse_of: :compliment
 
   after_create :notify
@@ -33,16 +34,6 @@ class Compliment < ActiveRecord::Base
 
   def upheart_count
     uphearts.count
-  end
-
-  def grouped_emoji_reactions
-    emoji_reactions.count_by_emoji
-  end
-
-  def has_reaction?(user, emoji)
-    return false if user.nil?
-
-    emoji_reactions.where(user_id: user.id, emoji: emoji).any?
   end
 
   private

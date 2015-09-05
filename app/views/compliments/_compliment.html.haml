@@ -13,9 +13,8 @@
     %ul.list.list--inline.message-controls.has-btn
       - compliment.grouped_emoji_reactions.each do |emoji, count|
         %li.list-item
-          = link_to "#", class: "js-reaction-toggle #{'is-reacted' if compliment.has_reaction?(current_user, emoji.name)}", data: { url: compliment_emoji_reaction_url(compliment, emoji: emoji.name) } do
-            = emoji.raw
-            %span.js-reaction-count= count
+          = render partial: 'shared/emoji_reaction', locals: { reactionable: compliment, emoji: emoji, count: count }
+
       %li.list-item
       - if compliment.from?(current_user)
         %li.list-item= link_to "Edit", edit_compliment_path(compliment)

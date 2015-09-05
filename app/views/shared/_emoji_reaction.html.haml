@@ -1,0 +1,3 @@
+= link_to "#", class: "js-reaction-toggle #{'is-reacted' if reactionable.has_reaction?(current_user, emoji.name)}", data: { url: polymorphic_url([reactionable, :emoji_reaction]), emoji: emoji.name } do
+  = emoji.raw
+  %span.js-reaction-count= count
