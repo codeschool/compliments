@@ -1,6 +1,7 @@
 class Compliment < ActiveRecord::Base
   belongs_to :complimenter, class_name: "User"
   belongs_to :complimentee, class_name: "User"
+  has_many :emoji_reactions, as: :reactionable
   has_many :uphearts, inverse_of: :compliment
 
   after_create :notify
