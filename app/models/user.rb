@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   has_many :compliments_given, class_name: "Compliment", foreign_key: :complimenter_id
   has_many :compliments_received, class_name: "Compliment", foreign_key: :complimentee_id
   has_many :quotes
+  has_many :uphearts, inverse_of: :user
 
   validates :email, presence: true
   validate :whitelisted_email, if: -> { self.class.email_whitelist? }

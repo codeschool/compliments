@@ -3,16 +3,19 @@
   %p.message-date
     %em= compliment.created_at.strftime("%B %d, %Y")
 
-  = image_tag compliment.complimenter.image, class: "thumb message-avatar"
+  = image_tag compliment.complimenter.image, class: "thumb message-avatar", size: "50"
 
   .card.message-content
     %p.message-content-name= compliment.complimenter.name
     = compliment.text
 
   .message-meta.group
-
-    - if compliment.from?(current_user)
-      %ul.list.list--inline.message-controls
+    %ul.list.list--inline.message-controls.has-btn
+      %li.list-item
+        = link_to "#", class: "js-upheart-toggle #{'is-uphearted' if compliment.uphearted_by?(current_user)}", data: { upheart_url: compliment_upheart_url(compliment) } do
+          ="&hearts;".html_safe
+          %span.js-upheart-count= compliment.upheart_count
+      - if compliment.from?(current_user)
         %li.list-item= link_to "Edit", edit_compliment_path(compliment)
         %li.list-item= link_to "Delete", compliment_path(compliment), method: :delete
 
@@ -22,4 +25,4 @@
           %span.tcs to
           = compliment.complimentee.name
       .bucket-media.message-complimentee-avatar
-        = image_tag compliment.complimentee.image, class: "thumb"
+        = image_tag compliment.complimentee.image, class: "thumb", size: "50"

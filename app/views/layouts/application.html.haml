@@ -5,10 +5,9 @@
     %title Compliments
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = stylesheet_link_tag('https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700')
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = favicon_link_tag 'favicon.ico'
     = csrf_meta_tags
-  %body
+  %body{ class: yield(:body_class) }
     %header.row.row--a.header
       .cell.well
         .g
@@ -16,8 +15,11 @@
             = link_to root_path do
               = image_tag 'logo-compliments.svg', alt: 'Compliments'
           .g-b.g-b--1of2
-            = image_tag current_user.image, class: "thumb fr", height: "50", width: "50"
+            - if current_user
+              = image_tag current_user.image, class: "thumb fr", height: "50", width: "50"
 
     %main.row.content
       .cell.well
         = yield
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true

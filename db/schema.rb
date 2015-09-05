@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150822183857) do
+ActiveRecord::Schema.define(version: 20150828201512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,17 @@ ActiveRecord::Schema.define(version: 20150822183857) do
     t.datetime "updated_at"
   end
 
+  create_table "uphearts", force: :cascade do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "compliment_id"
+  end
+
+  add_index "uphearts", ["compliment_id"], name: "index_uphearts_on_compliment_id", using: :btree
+  add_index "uphearts", ["user_id"], name: "index_uphearts_on_user_id", using: :btree
+
+  
   create_table "quotes", force: :cascade do |t|
     t.text     "text"
     t.datetime "created_at"

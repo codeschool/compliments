@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+ruby '2.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.3'
@@ -29,6 +30,9 @@ gem 'omniauth-google-oauth2'
 gem 'dotenv-rails'
 
 gem 'bootstrap-sass', '~> 3.3.5'
+
+# In order to play nice with heroku
+gem 'rails_12factor'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
