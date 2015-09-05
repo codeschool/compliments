@@ -3,7 +3,7 @@
   %p.message-date
     %em= quote.created_at.strftime("%B %d, %Y")
 
-  = image_tag quote.user.image, class: "thumb message-avatar"
+  = image_tag quote.user.image, class: "thumb message-avatar", size: "50"
 
   .card.message-content
     = quote.text
