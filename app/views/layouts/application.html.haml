@@ -7,13 +7,21 @@
     = stylesheet_link_tag('https://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700')
     = favicon_link_tag 'favicon.ico'
     = csrf_meta_tags
-  %body{ class: yield(:body_class) }
+  %body{ class: body_class }
     %header.row.row--a.header
       .cell.well
         .g
           .g-b.g-b--1of2
-            = link_to root_path do
-              = image_tag 'logo-compliments.svg', alt: 'Compliments'
+            - if compliments?
+              = link_to root_path do
+                = image_tag 'logo-compliments.svg', alt: 'Compliments'
+              = link_to quotes_path, class: 'por rn20' do
+                = image_tag 'logo-quotes-text.svg', alt: 'Quotes'
+            - else
+              = link_to quotes_path do
+                = image_tag 'logo-quotes.svg', alt: 'Quotes'
+              = link_to root_path, class: 'por rn20' do
+                = image_tag 'logo-compliments-text.svg', alt: 'Compliments'
           .g-b.g-b--1of2
             - if current_user
               = image_tag current_user.image, class: "thumb fr", height: "50", width: "50"

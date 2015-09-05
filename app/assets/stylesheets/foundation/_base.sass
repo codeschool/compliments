@@ -62,8 +62,10 @@ a
   text-decoration: none
   transition: $b-transition
 
-  &:hover,
-  &:focus
+  .quotes &
+    color: map-get($quotes, 'primary')
+
+  +state
     color: $c-text
 
 // ----- Images ----- //
