@@ -17,6 +17,7 @@ Rails.application.routes.draw do
     get :random, on: :collection
 
     resource :upheart, only: [:create, :destroy]
+    resource :emoji_reaction, only: [:create, :destroy]
   end
 
   # Example of regular route:

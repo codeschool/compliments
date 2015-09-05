@@ -11,10 +11,12 @@
 
   .message-meta.group
     %ul.list.list--inline.message-controls.has-btn
+      - compliment.grouped_emoji_reactions.each do |emoji, count|
+        %li.list-item
+          = link_to "#", class: "js-reaction-toggle #{'is-reacted' if compliment.has_reaction?(current_user, emoji.name)}", data: { url: compliment_emoji_reaction_url(compliment, emoji: emoji.name) } do
+            = emoji.raw
+            %span.js-reaction-count= count
       %li.list-item
-        = link_to "#", class: "js-upheart-toggle #{'is-uphearted' if compliment.uphearted_by?(current_user)}", data: { upheart_url: compliment_upheart_url(compliment) } do
-          ="&hearts;".html_safe
-          %span.js-upheart-count= compliment.upheart_count
       - if compliment.from?(current_user)
         %li.list-item= link_to "Edit", edit_compliment_path(compliment)
         %li.list-item= link_to "Delete", compliment_path(compliment), method: :delete
