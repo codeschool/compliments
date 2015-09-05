@@ -6,4 +6,8 @@ class Quote < ActiveRecord::Base
   def from?(user)
     user_id == user.id
   end
+
+  def self.random
+    unscoped.order("RANDOM()").first
+  end
 end

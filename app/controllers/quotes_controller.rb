@@ -1,4 +1,8 @@
 class QuotesController < ApplicationController
+  skip_before_filter :authenticate_user!, only: :random
+
+  http_basic_authenticate_with name: "internals", password: "heavy-awesome-chocolate-croissant-bagel", only: :random
+
   before_action :find_quote, only: [:show, :edit, :update, :destroy]
 
   def index
@@ -20,6 +24,12 @@ class QuotesController < ApplicationController
   end
 
   def show
+  end
+
+  def random
+    @quote = Quote.random
+
+    render :show
   end
 
   def edit
