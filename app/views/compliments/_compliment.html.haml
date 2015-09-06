@@ -11,11 +11,8 @@
 
   .message-meta.group
     %ul.list.list--inline.message-controls.has-btn
-      - compliment.grouped_emoji_reactions.each do |emoji, count|
-        %li.list-item
-          = render partial: 'shared/emoji_reaction', locals: { reactionable: compliment, emoji: emoji, count: count }
+      = render partial: 'shared/emoji_reactions', object: compliment, as: :reactionable
 
-      %li.list-item
       - if compliment.from?(current_user)
         %li.list-item= link_to "Edit", edit_compliment_path(compliment)
         %li.list-item= link_to "Delete", compliment_path(compliment), method: :delete
