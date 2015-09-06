@@ -1,0 +1,5 @@
+# -------------------------------------
+#   Emojis
+# -------------------------------------
+
+@Compliments.emojis = <%= Emoji.all.sort { |a,b| a.name <=> b.name }.inject({}) { |h, v| h[v.name] = v.raw; h }.to_json %>

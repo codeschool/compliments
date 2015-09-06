@@ -19,4 +19,8 @@
 #   Document Ready
 # -------------------------------------
 
+#= require compliments
+#= require components/emojis
+#= require components/add_emoji_reaction
+#= require components/toggle_emoji_reaction
 #= require domready

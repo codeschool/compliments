@@ -3,7 +3,7 @@ class EmojiReactionsController < ApplicationController
     @emoji_reaction = find_compliment.emoji_reactions.new(emoji_reaction_params)
 
     if @emoji_reaction.save
-      render json: { count: find_compliment.grouped_emoji_reactions[find_emoji].to_i }, status: 200
+      render partial: 'shared/emoji_reaction', locals: locals
     else
       render json: { errors: @emoji_reaction.errors.full_messages.to_sentence }, status: 500
     end
@@ -13,7 +13,7 @@ class EmojiReactionsController < ApplicationController
     @emoji_reaction = find_emoji_reaction
 
     if @emoji_reaction && @emoji_reaction.destroy
-      render json: { count: find_compliment.grouped_emoji_reactions[find_emoji].to_i }, status: 200
+      render partial: 'shared/emoji_reaction', locals: locals
     else
       render json: { errors: "Unable to remove emoji_reaction. :(" }, status: 500
     end
@@ -35,6 +35,14 @@ class EmojiReactionsController < ApplicationController
 
   def emoji_reaction_params
     { user_id: current_user.id, emoji: params[:emoji] }
+  end
+
+  def locals
+    {
+      reactionable: @emoji_reaction.reactionable,
+      emoji: find_emoji,
+      count: find_compliment.grouped_emoji_reactions[find_emoji].to_i
+    }
   end
 
 end
