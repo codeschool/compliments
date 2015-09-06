@@ -1,0 +1,6 @@
+- reactionable.grouped_emoji_reactions.each do |emoji, count|
+  %li.list-item
+    = render partial: 'shared/emoji_reaction', locals: { reactionable: reactionable, emoji: emoji, count: count }
+
+%li.list-item
+  = link_to "+", "#", class: 'js-reaction-trigger', data: { url: polymorphic_url([reactionable, :emoji_reaction]) }

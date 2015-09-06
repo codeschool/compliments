@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     post :slack, on: :collection
 
     resource :upheart, only: [:create, :destroy]
+    resource :emoji_reaction, only: [:create, :destroy]
   end
 
   # Example of regular route:

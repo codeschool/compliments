@@ -1,4 +1,6 @@
 class Compliment < ActiveRecord::Base
+  include Reactionable
+
   belongs_to :complimenter, class_name: "User"
   belongs_to :complimentee, class_name: "User"
   has_many :uphearts, inverse_of: :compliment
