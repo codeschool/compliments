@@ -41,6 +41,10 @@ class ComplimentsController < ApplicationController
     render :show
   end
 
+  def slack
+    Rails.logger.info params
+  end
+
   def edit
     @compliment = find_compliment
   end
