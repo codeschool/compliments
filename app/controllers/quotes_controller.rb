@@ -58,6 +58,6 @@ class QuotesController < ApplicationController
   end
 
   def quote_params
-    params.require(:quote).permit(:user_id, :text)
+    params.require(:quote).permit(:quoter_id, :quotee_id, :text)
   end
 end

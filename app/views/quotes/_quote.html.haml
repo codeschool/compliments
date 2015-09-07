@@ -3,9 +3,10 @@
   %p.message-date
     %em= quote.created_at.strftime("%B %d, %Y")
 
-  = image_tag quote.user.image, class: "thumb message-avatar", size: "50"
+  = image_tag quote.quotee.image, class: "thumb message-avatar", size: "50"
 
   .card.message-content
+    %p.message-content-name= quote.quotee.name
     = quote.text
 
   .message-meta.group
@@ -16,5 +17,5 @@
         %li.list-item= link_to "Delete", quote_path(quote), method: :delete
 
     %p.fr
-      %span.tcs by
-      = quote.user.name
+      %span.tcs via
+      = quote.quoter.name
