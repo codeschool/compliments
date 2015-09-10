@@ -22,5 +22,11 @@ module Compliments
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Include emoji images in asset path
+    config.assets.paths << Emoji.images_path
+
+    # and include them in the public directory
+    config.assets.precompile << "emoji/**/*.png"
   end
 end

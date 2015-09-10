@@ -15,6 +15,7 @@ Rails.application.routes.draw do
     get :received, on: :collection
     get :given, on: :collection
     get :random, on: :collection
+    post :slack, on: :collection
 
     resource :upheart, only: [:create, :destroy]
   end
