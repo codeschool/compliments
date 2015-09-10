@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   has_many :compliments_given, class_name: "Compliment", foreign_key: :complimenter_id
   has_many :compliments_received, class_name: "Compliment", foreign_key: :complimentee_id
+  has_many :quotes_given, class_name: "Quote", foreign_key: :quotee_id
+  has_many :quotes_attributed, class_name: "Quote", foreign_key: :quoter_id
   has_many :quotes
   has_many :uphearts, inverse_of: :user
 

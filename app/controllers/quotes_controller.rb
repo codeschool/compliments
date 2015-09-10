@@ -9,6 +9,15 @@ class QuotesController < ApplicationController
     @quotes = Quote.all
   end
 
+  def given
+    @quotes = current_user.quotes_given
+    render :index
+  end
+
+  def attributed
+    @quotes = current_user.quotes_attributed
+    render :index
+  end
   def new
     @quote = Quote.new
   end

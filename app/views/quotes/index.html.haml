@@ -1,6 +1,13 @@
 .split.mbl
   .split-cell
+
+    %ul.list.list--inline.list--inline--l
+      .list-item= link_to "All", quotes_path, class: "list-item-link #{active_class(quotes_path)}"
+      .list-item= link_to "Given", given_quotes_path, class: "list-item-link #{active_class(given_quotes_path)}"
+      .list-item= link_to "Attributed", attributed_quotes_path, class: "list-item-link #{active_class(attributed_quotes_path)}"
+
   .split-cell
+
     = link_to "New Quote", new_quote_path, class: "btn"
 
 - unless @quotes.empty?
