@@ -8,7 +8,7 @@ module Slack
 
   def self.notify_quote(quote)
     uri = URI.parse(SLACK_INCOMING_WEBHOOK)
-    response =  Net::HTTP.post_form(uri, { payload: quote_json(quote)) })
+    response =  Net::HTTP.post_form(uri, { payload: quote_json(quote) })
   end
 
   def self.quote_json(quote)
