@@ -19,6 +19,7 @@ module Slack
   def self.compliment_json(compliment)
     {
       icon_emoji: ":compliments:",
+      username: "Compliment Bot",
       text: "New compliment from #{compliment.complimenter_name}!",
       attachments: [
         {
@@ -39,6 +40,7 @@ module Slack
   def self.quote_json(quote)
     {
       icon_emoji: ":quotes:",
+      username: "Quote Bot",
       text: "New quote overheard by #{quote.quoter_name}!",
       attachments: [
         {
