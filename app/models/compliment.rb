@@ -4,7 +4,11 @@ class Compliment < ActiveRecord::Base
   has_many :uphearts, inverse_of: :compliment
 
   after_create :notify
+  after_create :post_to_slack
   after_create :create_complimenter_upheart
+
+  delegate :name, to: :complimentee, prefix: true
+  delegate :name, to: :complimenter, prefix: true
 
   default_scope { order("created_at DESC") }
 
@@ -35,6 +39,10 @@ class Compliment < ActiveRecord::Base
   end
 
   private
+
+  def post_to_slack
+    Slack.notify_compliment(self)
+  end
 
   def create_complimenter_upheart
     self.uphearts.create(user_id: complimenter.id)

@@ -6,9 +6,33 @@ module Slack
 
   SLACK_INCOMING_WEBHOOK = ENV["SLACK_INCOMING_WEBHOOK"]
 
+  def self.notify_compliment(compliment)
+    uri = URI.parse(SLACK_INCOMING_WEBHOOK)
+    response =  Net::HTTP.post_form(uri, { payload: compliment_json(compliment) })
+  end
+
   def self.notify_quote(quote)
     uri = URI.parse(SLACK_INCOMING_WEBHOOK)
     response =  Net::HTTP.post_form(uri, { payload: quote_json(quote) })
+  end
+
+  def self.compliment_json(compliment)
+    {
+      text: "New compliment from #{compliment.complimenter_name}!",
+      attachments: [
+        {
+          fallback: "#{compliment.complimenter_name} said something nice to #{compliment.complimentee_name}.",
+          color: "#f45950",
+          fields: [
+            {
+              title: "#{compliment.complimenter_name} said something nice to #{compliment.complimentee_name}:",
+              value: compliment.text,
+              short: false
+            }
+          ]
+        }
+      ]
+    }.to_json
   end
 
   def self.quote_json(quote)
