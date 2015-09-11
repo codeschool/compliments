@@ -23,17 +23,24 @@
 
 $carnation: #f45950
 $carrot: #f69b35
+$cerulean: #21abc7
+$marino: #616eb3
 $plum: #5c5a69
 $snow: #f0f2f3
 $white: #fff
+
+// ----- Themes ----- //
+
+$compliments: (primary: $carnation, secondary: $carrot)
+$quotes: (primary: $marino, secondary: $cerulean)
 
 // ----- Base ----- //
 
 $c-background-invert: $white
 $c-background: $snow
 $c-border: #aaa
-$c-primary: $carnation
-$c-secondary: $carrot
+$c-primary: map-get($compliments, 'primary')
+$c-secondary: map-get($compliments, 'secondary')
 $c-subdue: #999
 $c-text-invert: $white
 $c-text: $plum
@@ -42,7 +49,6 @@ $c-text: $plum
 
 $form-input-background: #fff
 $form-input-borderColor: $c-border
-$form-input-focus-borderColor: $c-primary
 
 // ----- Structures ----- //
 

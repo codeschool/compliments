@@ -13,7 +13,10 @@
 // *************************************
 
 .card
-  background: $c-primary
+  background-color: $c-primary
   border-radius: $b-borderRadius
   padding: $b-space
   position: relative
+
+  .quotes &
+    background-color: map-get($quotes, 'primary')

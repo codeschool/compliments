@@ -12,7 +12,7 @@
 // *************************************
 
 .btn
-  background: $c-primary
+  background-color: $c-primary
   border-radius: $b-borderRadius
   border: 1px solid transparent
   color: $c-text-invert
@@ -26,8 +26,12 @@
   transition: $b-transition
   white-space: nowrap
 
+  .quotes &
+    background-color: map-get($quotes, 'primary')
+    color: $c-text-invert
+
   +state
-    background: $c-text
+    background-color: $c-text
     color: $c-text-invert
 
 // -------------------------------------

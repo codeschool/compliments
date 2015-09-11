@@ -110,8 +110,11 @@
   width: 100%
 
   &:focus
-    border-color: $form-input-focus-borderColor
+    border-color: $c-primary
     outline: none
+
+    .quotes &
+      border-color: map-get($quotes, 'primary')
 
 // ----- Label ----- //
 

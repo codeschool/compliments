@@ -20,6 +20,12 @@ Rails.application.routes.draw do
     resource :upheart, only: [:create, :destroy]
   end
 
+  resources :quotes do
+    get :given, on: :collection
+    get :attributed, on: :collection
+    get :random, on: :collection
+  end
+
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
 

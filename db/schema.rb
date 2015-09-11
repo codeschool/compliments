@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150828201512) do
+ActiveRecord::Schema.define(version: 20150907140028) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 20150828201512) do
     t.integer  "complimentee_id",                 null: false
     t.text     "text"
     t.boolean  "private",         default: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "quotes", force: :cascade do |t|
+    t.integer  "quoter_id",  null: false
+    t.integer  "quotee_id",  null: false
+    t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
