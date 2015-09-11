@@ -23,6 +23,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def self.find_by_slack_username(username)
+    slacker = Slacker.all.select { |s| s.username == username }.first
+
+    slacker && User.find_by_slack_id(slacker.id)
+  end
+
   def self.find_and_update_from_omniauth(auth)
     find_by(auth.slice("provider","uid")).tap do |user|
       user && user.update_attribute(:image, auth["info"]["image"])

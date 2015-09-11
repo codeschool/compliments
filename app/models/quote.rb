@@ -2,6 +2,9 @@ class Quote < ActiveRecord::Base
   belongs_to :quoter, class_name: "User"
   belongs_to :quotee, class_name: "User"
 
+  validates :quoter, presence: true
+  validates :quotee, presence: true
+
   default_scope { order("created_at DESC") }
 
   delegate :name, to: :quotee, prefix: true

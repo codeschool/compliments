@@ -21,6 +21,7 @@ Rails.application.routes.draw do
   end
 
   resources :quotes do
+    post :slack, on: :collection
     get :given, on: :collection
     get :attributed, on: :collection
     get :random, on: :collection
