@@ -29,6 +29,12 @@ class User < ActiveRecord::Base
     end
   end
 
+  def slack_username
+    set_slack_id unless slack_id.present?
+
+    Slacker.find_by_id(slack_id).username
+  end
+
   def to_s
     self.name || self.email
   end
@@ -49,4 +55,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def set_slack_id
+    self.slack_id = Slacker.find_by_email(email).id
+    self.save
+  end
 end

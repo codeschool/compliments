@@ -28,5 +28,9 @@ module Compliments
 
     # and include them in the public directory
     config.assets.precompile << "emoji/**/*.png"
+
+    config.autoload_paths += %w[
+      app/services
+    ].map { |dir| config.root.join(dir) }.select { |dir| dir.directory? }
   end
 end
