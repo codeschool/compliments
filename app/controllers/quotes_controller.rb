@@ -38,7 +38,9 @@ class QuotesController < ApplicationController
 
   def slack
     quoter = User.find_by_slack_id(params[:user_id])
-    message, quotee_slack_username = params[:text].split("@").map { |s| s.gsub(/-|'|"/, "") }.map(&:strip)
+    message  = params[:text].split("@").first.strip.gsub(/-|'|"/, "")
+    quotee_slack_username = params[:text].split("@").second.strip
+
     quotee = User.find_by_slack_username(quotee_slack_username)
 
     @quote = Quote.new(
