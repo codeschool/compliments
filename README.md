@@ -17,3 +17,12 @@ Sometimes it's nice to be thankful.
 Compliments integrates with Slack. You can use the `/quote "Text" - @username` 
 command to create a new quote which will be attributed to the person associated
 with that username via the Slack API.
+
+## Authentication
+
+We use Google OAuth2 to simplify authentication (a bit) and avoid creating a new 
+set of credentials for such a small app. This will be very convenient to you if 
+you have a Gmail or Google Apps account, not so much if you don't.
+
+You'll need to create a Google API console project for your own hosted version of 
+Compliments in order to sign in. You can find [a step-by-step guide here](https://github.com/zquestz/omniauth-google-oauth2#google-api-setup).
