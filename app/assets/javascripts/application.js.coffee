@@ -20,3 +20,5 @@
 # -------------------------------------
 
 #= require domready
+
+$(".tv p.compliment").slabText();
