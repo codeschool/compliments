@@ -1,7 +1,7 @@
 class ComplimentsController < ApplicationController
   skip_before_filter :authenticate_user!, only: :random
 
-  http_basic_authenticate_with name: "internals", password: "heavy-awesome-chocolate-croissant-bagel", only: :random
+  before_filter :authenticate_ip, only: :random
 
   def index
     @compliments = Compliment.public
@@ -70,6 +70,12 @@ class ComplimentsController < ApplicationController
   end
 
   private
+
+  def authenticate_ip
+    if !((request.env["HTTP_X_FORWARDED_FOR"].try(:split, ',').try(:last) || request.env["REMOTE_ADDR"]) == '66.194.34.250')  
+      redirect_to '/'
+    end
+  end
 
   def find_compliment
     current_user.compliments_given.find(params[:id])

@@ -2,10 +2,9 @@ class QuotesController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:random, :slack]
   skip_before_filter :verify_authenticity_token, only: [:slack]
 
-  before_filter :validate_slack_token, only: :slack
+  http_basic_authenticate_with name: "internals", password: "heavy-awesome-chocolate-croissant-bagel", only: :random
 
-  # http_basic_authenticate_with name: "internals", password: "heavy-awesome-chocolate-croissant-bagel", only: :random
-  before_filter :authenticate_ip, only: :random
+  before_filter :validate_slack_token, only: :slack
 
   before_action :find_quote, only: [:show, :edit, :update, :destroy]
 
@@ -86,12 +85,6 @@ class QuotesController < ApplicationController
   end
 
   private
-
-  def authenticate_ip
-    if !((request.env["HTTP_X_FORWARDED_FOR"].try(:split, ',').try(:last) || request.env["REMOTE_ADDR"]) == '66.194.34.250')  
-      redirect_to '/'
-    end
-  end
 
   def find_quote
     @quote = Quote.find(params[:id])
