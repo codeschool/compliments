@@ -25,12 +25,23 @@ ActiveRecord::Schema.define(version: 20150911144554) do
     t.datetime "updated_at"
   end
 
+  create_table "emoji_reactions", force: :cascade do |t|
+    t.string   "emoji"
+    t.integer  "user_id",           null: false
+    t.integer  "reactionable_id",   null: false
+    t.string   "reactionable_type", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "emoji_reactions", ["reactionable_type", "reactionable_id"], name: "index_emoji_reactions_on_reactionable_type_and_reactionable_id", using: :btree
+
   create_table "quotes", force: :cascade do |t|
-    t.integer  "quoter_id",  null: false
-    t.integer  "quotee_id",  null: false
     t.text     "text"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "quoter_id",  null: false
+    t.integer  "quotee_id",  null: false
   end
 
   create_table "uphearts", force: :cascade do |t|

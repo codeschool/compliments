@@ -1,7 +1,7 @@
 class ComplimentsController < ApplicationController
   skip_before_filter :authenticate_user!, only: :random
 
-  before_filter :authenticate_ip, only: :random
+  # before_filter :authenticate_ip, only: :random
 
   def index
     @compliments = Compliment.public
@@ -72,7 +72,7 @@ class ComplimentsController < ApplicationController
   private
 
   def authenticate_ip
-    if !((request.env["HTTP_X_FORWARDED_FOR"].try(:split, ',').try(:last) || request.env["REMOTE_ADDR"]) == '66.194.34.250')  
+    if !((request.env["HTTP_X_FORWARDED_FOR"].try(:split, ',').try(:last) || request.env["REMOTE_ADDR"]) == '66.194.34.250')
       redirect_to '/'
     end
   end

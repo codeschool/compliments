@@ -21,4 +21,13 @@
 
 #= require domready
 
-$(".tv p.compliment").slabText();
+div = $(".tv .compliment")[0]
+
+area = (div.offsetHeight * div.offsetWidth)
+character_length = div.textContent.trim().length
+
+size =  ((area / character_length) / 900) + 1
+if ( size > 4 )
+  size = 4
+
+div.style.fontSize = size + "em"
