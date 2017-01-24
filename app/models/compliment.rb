@@ -16,8 +16,15 @@ class Compliment < ActiveRecord::Base
     where(private: false)
   end
 
+  def self.active
+    joins("JOIN users AS complimentee ON complimentee.id = complimentee_id").
+      joins("JOIN users AS complimenter ON complimenter.id = complimenter_id").
+      where(complimentee: { active: true }).
+      where(complimenter: { active: true })
+  end
+
   def self.random
-    unscoped.order("RANDOM()").first
+    unscoped.active.order("RANDOM()").first
   end
 
   def from?(user)
