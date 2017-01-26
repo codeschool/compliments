@@ -1,5 +1,6 @@
 class ComplimentsController < ApplicationController
-  skip_before_filter :authenticate_user!, only: :random
+  skip_before_filter :authenticate_user!, only: [:random, :slack]
+  skip_before_filter :verify_authenticity_token, only: [:slack]
 
   # before_filter :authenticate_ip, only: :random
 
@@ -42,7 +43,19 @@ class ComplimentsController < ApplicationController
   end
 
   def slack
-    Rails.logger.info params
+    compliment_command = SlashCommand::Compliment.new(user_id: params[:user_id], text: params[:text])
+
+    @compliment = Compliment.new(
+      complimenter: compliment_command.complimenter,
+      complimentee: compliment_command.complimentee,
+      text: compliment_command.compliment
+    )
+
+    if @compliment.save
+      render text: "Posted your compliment!"
+    else
+      render text: "Oops! Something went wrong :("
+    end
   end
 
   def edit

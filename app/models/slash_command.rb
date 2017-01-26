@@ -27,10 +27,27 @@ class SlashCommand
     private
 
     def quotee_slack_username
-      @data[:text].split("@").second.strip
+      text.split("@").second.strip
     end
   end
 
-  class Compliment
+  class Compliment < SlashCommand
+    def compliment
+      text.split(" ").drop(1).join(" ")
+    end
+
+    def complimenter
+      issuer
+    end
+
+    def complimentee
+      @complimentee ||= User.find_or_create_from_slack_username(complimentee_slack_username)
+    end
+
+    private
+
+    def complimentee_slack_username
+      text.split(" ").first.gsub(/@/,'')
+    end
   end
 end
