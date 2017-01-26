@@ -3,6 +3,7 @@ class Compliment < ActiveRecord::Base
   belongs_to :complimentee, class_name: "User"
   has_many :uphearts, inverse_of: :compliment
 
+  after_create :notify
   after_create :post_to_slack
   after_create :create_complimenter_upheart
 
