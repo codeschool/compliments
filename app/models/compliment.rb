@@ -27,6 +27,10 @@ class Compliment < ActiveRecord::Base
     unscoped.active.order("RANDOM()").first
   end
 
+  def complimentee_slack_id
+    complimentee.slack_id
+  end
+
   def from?(user)
     user == complimenter
   end

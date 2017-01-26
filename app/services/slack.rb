@@ -21,7 +21,7 @@ module Slack
       channel: "#compliments",
       icon_emoji: ":compliments:",
       username: "Compliment Bot",
-      text: "New compliment from #{compliment.complimenter_name}!",
+      text: "New compliment for <@#{compliment.complimentee_slack_id}>!",
       attachments: [
         {
           fallback: "#{compliment.complimenter_name} said something nice to #{compliment.complimentee_name}.",
