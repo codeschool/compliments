@@ -13,6 +13,12 @@ class User < ActiveRecord::Base
     find_and_update_from_omniauth(auth) or create_from_omniauth(auth)
   end
 
+  def self.find_and_update_from_omniauth(auth)
+    find_by(auth.slice("provider","uid")).tap do |user|
+      user && user.update_attribute(:image, auth["info"]["image"])
+    end
+  end
+
   def self.create_from_omniauth(auth)
     create do |user|
       user.provider = auth["provider"]
@@ -23,15 +29,22 @@ class User < ActiveRecord::Base
     end
   end
 
-  def self.find_by_slack_username(username)
-    slacker = Slacker.all.select { |s| s.username == username }.first
-
-    slacker && User.find_by_slack_id(slacker.id)
+  def self.find_or_create_from_slack_id(the_slack_id)
+    find_by(slack_id: the_slack_id) || create_from_slack(Slacker.find_by_id(the_slack_id))
   end
 
-  def self.find_and_update_from_omniauth(auth)
-    find_by(auth.slice("provider","uid")).tap do |user|
-      user && user.update_attribute(:image, auth["info"]["image"])
+  def self.find_or_create_from_slack_username(the_slack_username)
+    slacker = Slacker.find_by_username(the_slack_username)
+
+    find_by(slack_id: slacker.id) || create_from_slack(slacker)
+  end
+
+  def self.create_from_slack(slacker)
+    create do |user|
+      user.email = slacker.email
+      user.name = slacker.name
+      user.slack_id = slacker.id
+      user.image = slacker.image
     end
   end
 

@@ -37,16 +37,12 @@ class QuotesController < ApplicationController
   end
 
   def slack
-    quoter = User.find_by_slack_id(params[:user_id])
-    message  = params[:text].split("@").first.gsub(/-|'|"|”|“/, "").strip
-    quotee_slack_username = params[:text].split("@").second.strip
-
-    quotee = User.find_by_slack_username(quotee_slack_username)
+    quote_command = SlashCommand::Quote.new(user_id: params[:user_id], text: params[:text])
 
     @quote = Quote.new(
-      quoter: quoter,
-      quotee: quotee,
-      text: message
+      quoter: quote_command.quoter,
+      quotee: quote_command.quotee,
+      text: quote_command.quote
     )
 
     if @quote.save
@@ -95,6 +91,6 @@ class QuotesController < ApplicationController
   end
 
   def validate_slack_token
-    render text: 'Nope!', status: 401 if params[:token] != ENV['SLACK_QUOTES_TOKEN']
+    # render text: 'Nope!', status: 401 if params[:token] != ENV['SLACK_QUOTES_TOKEN']
   end
 end
