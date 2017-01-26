@@ -18,6 +18,7 @@ module Slack
 
   def self.compliment_json(compliment)
     {
+      channel: "#compliments",
       icon_emoji: ":compliments:",
       username: "Compliment Bot",
       text: "New compliment from #{compliment.complimenter_name}!",
