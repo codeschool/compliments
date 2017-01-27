@@ -10,6 +10,16 @@ class Compliment < ActiveRecord::Base
   delegate :name, to: :complimentee, prefix: true
   delegate :name, to: :complimenter, prefix: true
 
+  delegate :image, to: :complimentee, prefix: true
+  delegate :image, to: :complimenter, prefix: true
+
+  delegate :slack_id, to: :complimentee, prefix: true
+  delegate :slack_id, to: :complimenter, prefix: true
+
+  delegate :slack_username, to: :complimentee, prefix: true
+  delegate :slack_username, to: :complimenter, prefix: true
+
+
   default_scope { order("created_at DESC") }
 
   def self.public
@@ -25,10 +35,6 @@ class Compliment < ActiveRecord::Base
 
   def self.random
     unscoped.active.order("RANDOM()").first
-  end
-
-  def complimentee_slack_id
-    complimentee.slack_id
   end
 
   def from?(user)
