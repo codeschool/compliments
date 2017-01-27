@@ -5,31 +5,67 @@ module Slack
   include Rails.application.routes.url_helpers
 
   SLACK_INCOMING_WEBHOOK = ENV["SLACK_INCOMING_WEBHOOK"]
+  SLACK_COMPLIMENTS_CHANNEL_ID = ENV["SLACK_COMPLIMENTS_CHANNEL_ID"]
+  SLACK_COMPLIMENTS_CHANNEL_NAME = ENV["SLACK_COMPLIMENTS_CHANNEL_NAME"]
+
+  def self.webhook_uri
+    URI.parse(SLACK_INCOMING_WEBHOOK)
+  end
+
+  def self.compliments_channel_link
+    "<##{SLACK_COMPLIMENTS_CHANNEL_ID}|#{SLACK_COMPLIMENTS_CHANNEL_NAME}>"
+  end
 
   def self.notify_compliment(compliment)
-    uri = URI.parse(SLACK_INCOMING_WEBHOOK)
-    response =  Net::HTTP.post_form(uri, { payload: compliment_json(compliment) })
+    Net::HTTP.post_form(webhook_uri, {
+      payload: compliment_json(compliment)
+    })
+
+    Net::HTTP.post_form(webhook_uri, {
+      payload: compliment_notice_json(compliment)
+    })
   end
 
   def self.notify_quote(quote)
-    uri = URI.parse(SLACK_INCOMING_WEBHOOK)
-    response =  Net::HTTP.post_form(uri, { payload: quote_json(quote) })
+    Net::HTTP.post_form(webhook_uri, {
+      payload: quote_json(quote)
+    })
   end
 
   def self.compliment_json(compliment)
     {
-      channel: "#compliments",
+      channel: "##{SLACK_COMPLIMENTS_CHANNEL_NAME}",
       icon_emoji: ":compliments:",
       username: "Compliment Bot",
-      text: "New compliment for <@#{compliment.complimentee_slack_id}>!",
+      text: "*From #{compliment.complimenter_name} to #{compliment.complimentee_name}:*",
       attachments: [
         {
           fallback: "#{compliment.complimenter_name} said something nice to #{compliment.complimentee_name}.",
           color: "#f45950",
           fields: [
             {
-              title: "#{compliment.complimenter_name} said something nice to #{compliment.complimentee_name}:",
               value: compliment.text,
+              short: false
+            }
+          ]
+        }
+      ]
+    }.to_json
+  end
+
+
+  def self.compliment_notice_json(compliment)
+    {
+      channel: "@#{compliment.complimentee_slack_username}",
+      icon_emoji: ":compliments:",
+      username: "Compliment Bot",
+      attachments: [
+        {
+          fallback: "#{compliment.complimenter_name} said something nice about you.",
+          color: "#f45950",
+          fields: [
+            {
+              value: "#{compliment.complimenter_name} said something nice about you in #{compliments_channel_link}.",
               short: false
             }
           ]
