@@ -7,7 +7,7 @@
 
   .card.message-content
     %p.message-content-name= compliment.complimenter.name
-    %p.compliment= emojify(compliment.text)
+    = emojify(compliment.text)
 
   .message-meta.group
     %ul.list.list--inline.message-controls.has-btn
