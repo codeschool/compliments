@@ -21,9 +21,42 @@
 // ----- Avatar ----- //
 
 .message-avatar
-  left: 0
-  position: absolute
-  top: $b-space
+  display: inline-block
+  position: relative
+
+.message-avatar--from
+  &::before
+    $size: 10px
+    border-color: transparent transparent $c-primary transparent
+    border-style: solid
+    border-width: 0 $size $size $size
+    content: ""
+    left: 38%
+    position: absolute
+    top: 105%
+
+.message-avatar-image
+  display: block
+  // flex-grow: 1
+
+.message-avatar-name
+  display: block
+  // flex-shrink: 0
+  // margin-left: $bucket-space
+
+  > img
+    margin: auto
+    display: block
+    border-radius: 5px
+
+// ----- Arrow ----- //
+
+.message-arrow
+  display: inline-block
+  vertical-align: middle
+  font-size: 2em
+  padding: 0 0.25em
+  color: $c-subdue
 
 // ----- Complimentee ----- //
 
@@ -44,25 +77,12 @@
 // ----- Content ----- //
 
 .message-content
-  border-top-left-radius: 0
   color: $c-background-invert
-  margin-bottom: $b-space-s
-  margin-left: $b-space-xl
   padding-bottom: $b-space-l
   position: relative
 
-  &::before
-    $size: 20px
-    border-color: transparent $c-primary transparent transparent
-    border-style: solid
-    border-width: 0px $size $size 0
-    content: ""
-    left: -$size
-    position: absolute
-    top: 0
-
-    .quotes &
-      border-color: transparent map-get($quotes, 'primary') transparent transparent
+  .quotes &
+    border-color: transparent map-get($quotes, 'primary') transparent transparent
 
 // Scaffolding: Name
 

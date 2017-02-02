@@ -39,7 +39,7 @@ class ComplimentsController < ApplicationController
   def random
     @compliment = Compliment.public.random
 
-    render :show
+    render :show, layout: "big_screen"
   end
 
   def slack

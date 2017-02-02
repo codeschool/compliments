@@ -1,12 +1,24 @@
 .message
 
-  %p.message-date
-    %em= compliment.created_at.strftime("%B %d, %Y")
+  .tac
+    .message-avatar.message-avatar--from
+      .message-avatar-media
+        = image_tag compliment.complimenter_image, class: "thumb--m", size: "50"
+      .message-avatar-name.tcs
+        @#{compliment.complimenter_slack_username}
 
-  = image_tag compliment.complimenter.image, class: "thumb message-avatar", size: "50"
+    .message-arrow
+      &rarr;
+
+    .message-avatar
+      .message-avatar-media
+        = image_tag compliment.complimentee_image, class: "thumb--m", size: "50"
+      .message-avatar-name.tcs
+        @#{compliment.complimentee_slack_username}
+
+
 
   .card.message-content
-    %p.message-content-name= compliment.complimenter.name
     = emojify(compliment.text)
 
   .message-meta.group
@@ -19,10 +31,5 @@
         %li.list-item= link_to "Edit", edit_compliment_path(compliment)
         %li.list-item= link_to "Delete", compliment_path(compliment), method: :delete
 
-    .bucket.bucket--flag.message-complimentee
-      .bucket-content.message-complimentee-name
-        %p
-          %span.tcs to
-          = compliment.complimentee.name
-      .bucket-media.message-complimentee-avatar
-        = image_tag compliment.complimentee.image, class: "thumb", size: "50"
+    %p.message-date
+      %em= compliment.created_at.strftime("%B %d, %Y")
