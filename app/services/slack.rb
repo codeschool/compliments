@@ -42,6 +42,7 @@ module Slack
         {
           fallback: "#{compliment.complimenter_name} said something nice to #{compliment.complimentee_name}.",
           color: "#f45950",
+          mrkdwn_in: ["fields"],
           fields: [
             {
               value: compliment.text,
@@ -63,6 +64,7 @@ module Slack
         {
           fallback: "#{compliment.complimenter_name} said something nice about you.",
           color: "#f45950",
+          mrkdwn_in: ["fields"],
           fields: [
             {
               value: "#{compliment.complimenter_name} said something nice about you in #{compliments_channel_link}.",
