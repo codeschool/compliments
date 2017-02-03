@@ -13,7 +13,7 @@ class SlashCommand
 
   class Quote < SlashCommand
     def quote
-      text.split("@").first.strip
+      text.split(" ").drop(1).join(" ")
     end
 
     def quoter
@@ -27,7 +27,7 @@ class SlashCommand
     private
 
     def quotee_slack_username
-      text.split("@").second.strip
+      text.split(" ").first.gsub(/@/,'')
     end
   end
 

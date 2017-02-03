@@ -10,6 +10,15 @@ class Quote < ActiveRecord::Base
   delegate :name, to: :quotee, prefix: true
   delegate :name, to: :quoter, prefix: true
 
+  delegate :image, to: :quotee, prefix: true
+  delegate :image, to: :quoter, prefix: true
+
+  delegate :slack_id, to: :quotee, prefix: true
+  delegate :slack_id, to: :quoter, prefix: true
+
+  delegate :slack_username, to: :quotee, prefix: true
+  delegate :slack_username, to: :quoter, prefix: true
+
   after_create :post_to_slack
 
   def from?(user)
