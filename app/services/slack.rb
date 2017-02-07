@@ -78,7 +78,7 @@ module Slack
           mrkdwn_in: ["fields"],
           fields: [
             {
-              value: "#{compliment.complimenter_name} said something nice about you in #{compliments_channel_link}.",
+              value: "#{compliment.complimenter_name} said something nice about you in #{compliments_channel_link}.\nYou can use a <https://slackhq.com/threaded-messaging-comes-to-slack-417ffba054bd#.gxu13yes1|slack thread> to say thanks!",
               short: false
             }
           ]
