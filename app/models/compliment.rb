@@ -33,15 +33,11 @@ class Compliment < ActiveRecord::Base
   end
 
   def self.recent
-    where("compliments.created_at > ?", 2.weeks.ago)
+    where("compliments.created_at > ?", 1.month.ago)
   end
 
   def self.random
-    if [true, false].sample
-      unscoped.active.recent.order("RANDOM()").first
-    else
-      unscoped.active.order("RANDOM()").first
-    end
+    unscoped.active.recent.order("RANDOM()").first
   end
 
   def from?(user)
