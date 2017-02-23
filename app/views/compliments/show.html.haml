@@ -1,2 +1,6 @@
 .cell.cell--s.well.well--l.tv
   = render @compliment
+
+- if current_page?(random_compliments_path)
+  %script
+    setTimeout(function() { location.reload() }, 500)
