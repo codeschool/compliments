@@ -26,3 +26,12 @@ you have a Gmail or Google Apps account, not so much if you don't.
 
 You'll need to create a Google API console project for your own hosted version of 
 Compliments in order to sign in. You can find [a step-by-step guide here](https://github.com/zquestz/omniauth-google-oauth2#google-api-setup).
+
+## How to get set up
+
+After you clone the repository locally, there are a few steps to get a local 
+version running.
+
+- Run ./bin/setup
+- Update the .env file with the correct environment variables (see the file)
+- Das it!
