@@ -9,6 +9,7 @@
   .split-cell
 
     = link_to "New Compliment", new_compliment_path, class: "btn"
+    = link_to "Download My Compliments", received_compliments_path(format: :csv), class: "btn"
 
 - unless @compliments.empty?
   .g.collection.collection--1of2

@@ -1,3 +1,5 @@
+require 'csv'
+
 class ComplimentsController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:random, :slack]
   skip_before_filter :verify_authenticity_token, only: [:slack]
@@ -15,7 +17,18 @@ class ComplimentsController < ApplicationController
 
   def received
     @compliments = current_user.compliments_received
-    render :index
+    respond_to do |format|
+      format.html do
+        render :index
+      end
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"compliments.csv\""
+        headers['Content-Type'] ||= 'text/csv'
+        @headers = ['From', 'To', "Compliment", "When"]
+        render :index
+      end
+    end
+    
   end
 
   def new
