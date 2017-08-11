@@ -13,20 +13,26 @@ class ComplimentsController < ApplicationController
   end
 
   def given
-    @compliments = current_user.compliments_given
+    @compliments = current_user.compliments_given.
+      paginate(page: params[:page], per_page: 30)
+
     render :index
   end
 
   def received
-    @compliments = current_user.compliments_received
     respond_to do |format|
       format.html do
+        @compliments = current_user.compliments_received.
+          paginate(page: params[:page], per_page: 30)
+
         render :index
       end
       format.csv do
+        @compliments = current_user.compliments_received
         headers['Content-Disposition'] = "attachment; filename=\"compliments.csv\""
         headers['Content-Type'] ||= 'text/csv'
-        @headers = ['From', 'To', "Compliment", "When"]
+        @headers = ["From", "To", "Compliment", "When"]
+
         render :index
       end
     end
