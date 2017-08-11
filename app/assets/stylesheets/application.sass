@@ -92,3 +92,52 @@ body, main
 
   .well--l
     margin-bottom: $b-space-xl
+
+.pagination
+  border: 1px solid #e5e5e5
+  text-align: center
+  margin: 0 0 1em 0
+  padding: 1em 0
+  cursor: default
+
+  a, span
+    padding: 0 0.4em
+
+  .disabled
+    color: #aaaaaa
+
+  .current
+    font-style: normal
+    font-weight: bold
+    background-color: $c-primary
+    color: $white
+    display: inline-block
+    width: 1.4em
+    height: 1.4em
+    line-height: 1.4
+    border-radius: $b-borderRadius
+
+  a
+    width: 1.4em
+    text-decoration: none
+    color: black
+    border-radius: $b-borderRadius
+    &:hover, &:focus
+      background-color: $c-primary
+      color: white
+
+  .previous_page, .next_page
+    width: auto
+    background-color: $c-primary
+    border-radius: $b-borderRadius
+    border: 1px solid transparent
+    color: $c-text-invert
+    cursor: pointer
+    display: inline-block
+    font-size: $b-fontSize
+    line-height: 2.5
+    padding: 0 $b-space
+    text-align: center
+    text-decoration: none
+    transition: $b-transition
+    white-space: nowrap

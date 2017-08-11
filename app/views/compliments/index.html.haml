@@ -1,4 +1,4 @@
-.split.mbl
+.split.mbm
   .split-cell
 
     %ul.list.list--inline.list--inline--l
@@ -11,10 +11,16 @@
     = link_to "New Compliment", new_compliment_path, class: "btn"
     = link_to "Download My Compliments", received_compliments_path(format: :csv), class: "btn"
 
-- unless @compliments.empty?
+- if @compliments.any?
+  = will_paginate @compliments
+
   .g.collection.collection--1of2
+
     - @compliments.each do |compliment|
       .g-b.g-b--1of2.collection-item
         = render compliment
+
+
+  = will_paginate @compliments
 - else
   %p.pal.tac.tcs.tsi There are no compliments currently. Say something nice :)

@@ -9,7 +9,7 @@ class ComplimentsController < ApplicationController
   def index
     @compliments = Compliment.includes(
       :complimenter, :complimentee, :uphearts
-    ).public
+    ).public.paginate(page: params[:page], per_page: 30)
   end
 
   def given
