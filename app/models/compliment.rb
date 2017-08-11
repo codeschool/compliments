@@ -61,7 +61,7 @@ class Compliment < ActiveRecord::Base
   private
 
   def post_to_slack
-    Slack.notify_compliment(self)
+    Slack.notify_compliment(self) if ENV["SLACK_INCOMING_WEBHOOK"].present?
   end
 
   def create_complimenter_upheart
