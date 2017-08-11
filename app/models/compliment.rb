@@ -55,7 +55,7 @@ class Compliment < ActiveRecord::Base
   end
 
   def upheart_count
-    uphearts.count
+    uphearts.size
   end
 
   private
