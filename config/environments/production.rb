@@ -87,5 +87,5 @@ Rails.application.configure do
     :enable_starttls_auto => true
   }
 
-  config.action_mailer.default_url_options = { host: ENV.fetch("APP_DOMAIN") }
+  config.action_mailer.default_url_options = { host: "http://#{ENV.fetch('APP_DOMAIN')}" }
 end
