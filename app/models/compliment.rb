@@ -51,7 +51,7 @@ class Compliment < ActiveRecord::Base
   def uphearted_by?(user)
     return false if user.nil?
 
-    uphearts.where(user_id: user.id).any?
+    uphearts.select { |u| u.user_id = user.id }.any?
   end
 
   def upheart_count
