@@ -1,3 +1,4 @@
-= CSV.generate_line @headers
-- @compliments.each do |compliment|
-    = CSV.generate_line([compliment.complimenter, compliment.complimentee, compliment.text.to_csv, compliment.created_at.to_date])
+= CSV.generate(headers: true) do |csv|
+  - csv << @headers
+  - @compliments.each do |compliment|
+    - csv << [compliment.complimenter, compliment.complimentee, compliment.text.gsub(",", "，"), compliment.created_at.to_date]
