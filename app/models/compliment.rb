@@ -19,7 +19,7 @@ class Compliment < ActiveRecord::Base
   delegate :slack_username, to: :complimenter, prefix: true
 
 
-  default_scope { order("created_at DESC") }
+  default_scope { order(created_at: :desc) }
 
   def self.public
     where(private: false)
