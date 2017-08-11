@@ -7,7 +7,9 @@ class ComplimentsController < ApplicationController
   # before_filter :authenticate_ip, only: :random
 
   def index
-    @compliments = Compliment.includes(:complimenter, :uphearts).public
+    @compliments = Compliment.includes(
+      :complimenter, :complimentee, :uphearts
+    ).public
   end
 
   def given
