@@ -5,3 +5,19 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+10.times do
+  User.create(
+    name: Faker::Name.name,
+    email: "#{Faker::Internet.email.split("@").first}@#{ENV['EMAIL_WHITELIST']}",
+    image: Faker::Avatar.image
+  )
+end
+
+20.times do
+  Compliment.create(
+    complimenter: User.order("RANDOM()").first,
+    complimentee: User.order("RANDOM()").first,
+    text: Faker::Lorem.sentence
+  )
+end

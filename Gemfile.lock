@@ -61,6 +61,8 @@ GEM
       railties (~> 4.0)
     erubis (2.7.0)
     execjs (2.6.0)
+    faker (1.6.6)
+      i18n (~> 0.5)
     faraday (0.9.1)
       multipart-post (>= 1.2, < 3)
     ffi (1.9.18)
@@ -211,6 +213,7 @@ DEPENDENCIES
   byebug
   coffee-rails (~> 4.1.0)
   dotenv-rails
+  faker
   gemoji
   haml-rails (~> 0.9)
   jbuilder (~> 2.0)
