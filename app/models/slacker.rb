@@ -14,7 +14,6 @@ class Slacker
     slack_user_data.map { |data| self.new(data) }
   end
 
-
   def self.find_by_email(email)
     all.select { |m| m.email == email }.first
   end
