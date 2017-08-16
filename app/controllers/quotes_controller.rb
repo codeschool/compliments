@@ -2,7 +2,7 @@ class QuotesController < ApplicationController
   skip_before_filter :authenticate_user!, only: [:random, :slack]
   skip_before_filter :verify_authenticity_token, only: [:slack]
 
-  http_basic_authenticate_with name: "internals", password: "heavy-awesome-chocolate-croissant-bagel", only: :random
+  http_basic_authenticate_with name: "internals", password: ENV["RANDOM_QUOTES_PASSWORD"], only: :random
 
   before_filter :validate_slack_token, only: :slack
 
